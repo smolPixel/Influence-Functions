@@ -1,5 +1,5 @@
 """Leave one out for finding the influence"""
-
+from torch.utils.data import DataLoader
 class loo_influence():
 
 	def __init__(self, argdict):
