@@ -24,7 +24,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Experiments for VAE')
     # #General arguments on training
 
-    parser.add_argument('--config_file', type=str, default='Configs/SST-2/VAE.yaml', help="dataset you want to run the process on. Includes SST2, TREC6, FakeNews")
+    parser.add_argument('--config_file', type=str, default='Configs/MNIST.yaml', help="dataset you want to run the process on. Includes SST2, TREC6, FakeNews")
     args = parser.parse_args()
     args = args.__dict__
 
