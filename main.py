@@ -6,6 +6,7 @@ import numpy as np
 import torch
 from Data.dataset import create_datasets
 from Classifiers.classifiers import classifier
+from Influence.influence import influence
 import yaml
 
 from utils import set_seed
@@ -17,7 +18,8 @@ def main(argdict):
     train, dev, test=create_datasets(argdict)
     clas=classifier(argdict, train, dev, test)
     clas.train()
-
+    infl=influence(argdict)
+    influence.
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Experiments for VAE')
