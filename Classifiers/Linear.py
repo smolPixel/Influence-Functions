@@ -15,12 +15,11 @@ class LinearClassifier(pl.LightningModule):
 
 
         self.embedding_size=300
-
-        self.init_model()
-        self.loss_function=train.loss_function
         self.train_set=train
         self.dev_set=dev
         self.test_set=test
+        self.init_model()
+        self.loss_function=train.loss_function
         # self.loss_function=
         # print(self.model)
 
