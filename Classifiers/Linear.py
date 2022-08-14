@@ -25,11 +25,7 @@ class LinearClassifier(pl.LightningModule):
         # print(self.model)
 
     def init_model(self):
-        if self.argdict['need_embedding']:
-            self.embedding = nn.Embedding(self.vocab_size, self.embedding_size)
-            self.linear_layer=nn.Linear(self.embedding_size, len(self.argdict['categories']))
-        else:
-            self.linear_layer=nn.Linear(self.argdict['input_size'], len(self.argdict['categories']))
+        self.linear_layer=nn.Linear(self.argdict['input_size'], len(self.argdict['categories']))
         # self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.001)
         # for param in self.model.base_model.parameters():
         #     param.requires_grad = False
