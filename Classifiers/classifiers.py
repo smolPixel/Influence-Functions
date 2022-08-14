@@ -13,4 +13,4 @@ class classifier():
 
 
 	def train(self, train, dev):
-		return self.model.train(train, dev)
+		return self.model.train_model(train, dev)
