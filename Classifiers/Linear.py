@@ -18,14 +18,14 @@ class LinearClassifier(pl.LightningModule):
 
         self.init_model()
         self.loss_function=train.loss_function
-        self.train=train
-        self.dev=dev
-        self.test=test
+        self.train_set=train
+        self.dev_set=dev
+        self.test_set=test
         # self.loss_function=
         # print(self.model)
 
     def init_model(self):
-        self.linear_layer=nn.Linear(self.argdict['input_size'], len(self.train['categories']))
+        self.linear_layer=nn.Linear(self.argdict['input_size'], len(self.train_set['categories']))
         # self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.001)
         # for param in self.model.base_model.parameters():
         #     param.requires_grad = False
