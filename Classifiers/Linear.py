@@ -95,18 +95,18 @@ class LinearClassifier(pl.LightningModule):
     def validation_epoch_end(self, outputs):
         print("---\n")
 
-    def train_model(self, training_set, dev_set, generator, return_grad=False):
+    def train_model(self):
         self.trainer = pl.Trainer(gpus=1, max_epochs=self.argdict['nb_epoch_classifier'], precision=16, enable_checkpointing=False)
         # trainer=pl.Trainer(max_epochs=self.argdict['num_epochs'])
         train_loader = DataLoader(
-            dataset=training_set,
+            dataset=self.train_set,
             batch_size=64,
             shuffle=True,
             # num_workers=cpu_count(),
             pin_memory=torch.cuda.is_available()
         )
         dev_loader = DataLoader(
-            dataset=dev_set,
+            dataset=self.dev_set,
             batch_size=64,
             shuffle=False,
             # num_workers=cpu_count(),
