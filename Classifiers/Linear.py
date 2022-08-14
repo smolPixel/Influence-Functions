@@ -45,12 +45,12 @@ class LinearClassifier(pl.LightningModule):
     def get_loss(self, batch):
         input=batch['input']
         bs = input.shape[0]
-        embed=self.embedding(input)
-        embed=torch.mean(embed, dim=1)
-        output=self.linear_layer(embed)
-        best=torch.softmax(output, dim=-1)
-        pred=torch.argmax(best, dim=-1)
-        acc=accuracy_score(batch['label'].cpu(), pred.cpu())
+        # embed=self.embedding(input)
+        # embed=torch.mean(embed, dim=1)
+        output=self.linear_layer(input)
+        # best=torch.softmax(output, dim=-1)
+        # pred=torch.argmax(best, dim=-1)
+        # acc=accuracy_score(batch['label'].cpu(), pred.cpu())
         loss=self.loss_function(output, batch['label'])
         return loss
 
