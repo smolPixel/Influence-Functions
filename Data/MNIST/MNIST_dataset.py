@@ -15,6 +15,7 @@ class MNIST_dataset(Dataset):
 		   vocabInput+Output: vocab trained on train"""
 		self.data = {}
 		self.loss_function=torch.nn.BCELoss(reduction='sum')
+		self.categories=[0,1,2,3,4,5,6,7,8,9]
 		index=0
 		for i, row in enumerate(data_ll):
 			input, label=row
