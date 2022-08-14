@@ -1,6 +1,6 @@
 
 
-class classifier()
+class classifier():
 
 	def __init__(self, argdict):
 		self.argdict=argdict
