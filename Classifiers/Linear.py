@@ -57,9 +57,6 @@ class LinearClassifier(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         input=batch['input']
         bs = input.shape[0]
-        if self.argdict['need_embedding']:
-            input=self.embedding(input)
-            input=torch.mean(input, dim=1)
         input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
         output=self.linear_layer(input_sequence)
         best=torch.softmax(output, dim=-1)
@@ -76,9 +73,6 @@ class LinearClassifier(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         input=batch['input']
         bs=input.shape[0]
-        if self.argdict['need_embedding']:
-            input=self.embedding(input)
-            input=torch.mean(input, dim=1)
         input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
         output=self.linear_layer(input_sequence)
         best=torch.softmax(output, dim=-1)
