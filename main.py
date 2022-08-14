@@ -5,7 +5,6 @@ import random
 import numpy as np
 import torch
 from Data.dataset import create_datasets
-from Generator.Generator import generator
 import yaml
 
 def set_seed(seed=42):
@@ -19,10 +18,7 @@ def set_seed(seed=42):
 def main(argdict):
     # run_lstm(argdict)
     train, dev, test=create_datasets(argdict)
-    Gen = generator(argdict, train, dev, test)
-    Gen.train()
-    metrics=Gen.test()
-    print(metrics)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Experiments for VAE')
