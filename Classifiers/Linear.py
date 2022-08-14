@@ -44,6 +44,7 @@ class LinearClassifier(pl.LightningModule):
 
     def get_loss(self, batch):
         input=batch['input'].to(self.device)
+        self.to(self.device)
         bs = input.shape[0]
         input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
         # embed=self.embedding(input)
