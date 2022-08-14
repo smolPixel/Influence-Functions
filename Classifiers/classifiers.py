@@ -14,3 +14,6 @@ class classifier():
 
 	def train(self):
 		return self.model.train_model()
+
+	def get_loss(self, batch):
+		return self.model.get_loss(batch)
