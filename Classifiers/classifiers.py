@@ -10,3 +10,7 @@ class classifier():
 			self.model=LinearClassifier(self.argdict)
 		else:
 			raise ValueError("Classifier Not Found")
+
+
+	def train(self, train, dev):
+		return self.model.train(train, dev)
