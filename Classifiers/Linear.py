@@ -8,7 +8,7 @@ import pytorch_lightning as pl
 
 class LinearClassifier(pl.LightningModule):
 
-    def __init__(self, argdict, train):
+    def __init__(self, argdict, train, dev, test):
         super().__init__()
         self.argdict=argdict
         self.vocab_size=argdict['input_size']
@@ -18,6 +18,9 @@ class LinearClassifier(pl.LightningModule):
 
         self.init_model()
         self.loss_function=train.loss_function
+        self.train=train
+        self.dev=dev
+        self.test=test
         # self.loss_function=
         # print(self.model)
 
