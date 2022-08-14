@@ -4,11 +4,7 @@ import torch
 import torch.nn as nn
 import os
 from sklearn.metrics import accuracy_score, recall_score, f1_score
-from data.DataProcessor import ds_DAControlled
-import itertools
 import pytorch_lightning as pl
-from pytorch_lightning.callbacks import Callback
-from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 
 class LinearClassifier(pl.LightningModule):
 
