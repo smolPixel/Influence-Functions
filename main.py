@@ -19,8 +19,8 @@ def set_seed(seed=42):
 def main(argdict):
     # run_lstm(argdict)
     train, dev, test=create_datasets(argdict)
-    clas=classifier(argdict)
-    clas.train(train, dev)
+    clas=classifier(argdict, train, dev, test)
+    clas.train()
 
 
 if __name__ == '__main__':
