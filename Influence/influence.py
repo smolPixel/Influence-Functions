@@ -7,6 +7,8 @@ class influence():
 		if argdict['influence_function'].lower()=="loo":
 			from Influence.loo import loo_influence
 			self.model=loo_influence(argdict)
+		else:
+			raise ValueError("Influence function not found")
 
 
 	def calc_influence(self, model, train, dev):

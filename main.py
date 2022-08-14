@@ -19,7 +19,7 @@ def main(argdict):
     clas=classifier(argdict, train, dev, test)
     clas.train()
     infl=influence(argdict)
-    influence.
+    infl.calc_influence(clas, train, dev)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Experiments for VAE')
