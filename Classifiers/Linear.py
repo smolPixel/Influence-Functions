@@ -10,7 +10,7 @@ import pytorch_lightning as pl
 from pytorch_lightning.callbacks import Callback
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 
-class Linear_Classifier(pl.LightningModule):
+class LinearClassifier(pl.LightningModule):
 
     def __init__(self, argdict, train):
         super().__init__()
