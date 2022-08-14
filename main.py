@@ -8,7 +8,7 @@ from Data.dataset import create_datasets
 from Classifiers.classifiers import classifier
 import yaml
 
-
+from utils import set_seed
 
 
 def main(argdict):
