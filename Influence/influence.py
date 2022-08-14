@@ -13,3 +13,4 @@ class influence():
 
 	def calc_influence(self, model, train, dev):
 		self.model.calc_influence(model, train, dev)
+
