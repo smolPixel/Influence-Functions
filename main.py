@@ -17,7 +17,7 @@ def main(argdict):
     # set_seed(argdict['random_seed'])
     train, dev, test=create_datasets(argdict)
     clas=classifier(argdict, train, dev, test)
-    clas.train()
+    clas.train(train)
     infl=influence(argdict)
     infl.calc_influence(clas, train, dev)
 

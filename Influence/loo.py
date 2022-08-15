@@ -34,6 +34,5 @@ class loo_influence():
 		training_new=deepcopy(train)
 		training_new.data.pop(0)
 		training_new.reset_index()
-		print(len(training_new))
-		fds
+		model.train(training_new)
 
