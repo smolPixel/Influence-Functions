@@ -36,3 +36,19 @@ class loo_influence():
 		training_new.reset_index()
 		model.train(training_new)
 
+		data_loader = DataLoader(
+			dataset=dev,
+			batch_size=1,
+			shuffle=False,
+			# num_workers=cpu_count(),
+			pin_memory=torch.cuda.is_available()
+		)
+		for j, batch in enumerate(data_loader):
+			with torch.no_grad():
+				loss = model.get_loss(batch).item()
+			results_full[j] = loss
+
+		influence_new=torch.zeros((len(train), len(dev)))
+
+		print(influence_new.shape)
+		print(influence-influence_new)
