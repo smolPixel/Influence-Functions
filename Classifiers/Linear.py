@@ -30,6 +30,9 @@ class LinearClassifier(pl.LightningModule):
         #     param.requires_grad = False
         # self.optimizer = AdamW(self.model.parameters(), lr=1e-5)
 
+    def reset(self):
+        self.init_model()
+
     def configure_optimizers(self):
         optimizer = torch.optim.Adam(self.parameters(), lr=0.001)
         return optimizer
