@@ -12,8 +12,8 @@ class classifier():
 			raise ValueError("Classifier Not Found")
 
 
-	def train(self):
-		return self.model.train_model()
+	def train(self, train):
+		return self.model.train_model(train)
 
 	def get_loss(self, batch):
 		return self.model.get_loss(batch)
