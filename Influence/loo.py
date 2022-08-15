@@ -28,7 +28,7 @@ class loo_influence():
 
 
 		#First thing first test the reset of the model and retraining
-		set_seed(self.argdict['random_seed'])
+		# set_seed(self.argdict['random_seed'])
 		model.reset()
 		model.train()
 		results_full = torch.zeros((len(dev)))
