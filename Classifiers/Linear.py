@@ -46,7 +46,7 @@ class LinearClassifier(pl.LightningModule):
         input=batch['input'].to(self.device)
         self.to(self.device)
         bs = input.shape[0]
-        input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
+        input_sequence = input.view(-1, self.argdict['input_size']).to(self.device).float()
         # embed=self.embedding(input)
         # embed=torch.mean(embed, dim=1)
         output=self.linear_layer(input_sequence)
