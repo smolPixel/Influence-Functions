@@ -14,7 +14,7 @@ from utils import set_seed
 
 def main(argdict):
     # run_lstm(argdict)
-    set_seed(argdict['random_seed'])
+    # set_seed(argdict['random_seed'])
     train, dev, test=create_datasets(argdict)
     clas=classifier(argdict, train, dev, test)
     clas.train()
