@@ -17,3 +17,6 @@ class classifier():
 
 	def get_loss(self, batch):
 		return self.model.get_loss(batch)
+
+	def reset(self):
+		self.model.reset()
