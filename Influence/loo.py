@@ -29,26 +29,27 @@ class loo_influence():
 
 		#First thing first test the reset of the model and retraining
 		# set_seed(self.argdict['random_seed'])
-		model.reset()
-		print(len(train))
-		training_new=deepcopy(train)
-		training_new.data.pop(0)
-		training_new.reset_index()
-		model.train(training_new)
+		for index in len(train):
+			print(f"{index}/{len(train)}")
+			model.reset()
+			print(len(train))
+			training_new=deepcopy(train)
+			training_new.data.pop(index)
+			training_new.reset_index()
+			model.train(training_new)
 
-		data_loader = DataLoader(
-			dataset=dev,
-			batch_size=1,
-			shuffle=False,
-			# num_workers=cpu_count(),
-			pin_memory=torch.cuda.is_available()
-		)
-		for j, batch in enumerate(data_loader):
-			with torch.no_grad():
-				loss = model.get_loss(batch).item()
-			results_full[j] = loss
+			data_loader = DataLoader(
+				dataset=dev,
+				batch_size=1,
+				shuffle=False,
+				# num_workers=cpu_count(),
+				pin_memory=torch.cuda.is_available()
+			)
+			for j, batch in enumerate(data_loader):
+				with torch.no_grad():
+					loss = model.get_loss(batch).item()
+				influence[index, j] = loss-results_full[j]
 
-		influence_new=torch.zeros((len(train), len(dev)))
+		# influence_new=torch.zeros((len(train), len(dev)))
 
-		print(influence_new.shape)
-		print(influence-influence_new)
+		torch.save(influence, "Results/LeaveOneOutLinear.pt")
