@@ -29,7 +29,7 @@ class loo_influence():
 
 		#First thing first test the reset of the model and retraining
 		# set_seed(self.argdict['random_seed'])
-		for index in len(train):
+		for index in range(len(train)):
 			print(f"{index}/{len(train)}")
 			model.reset()
 			print(len(train))
