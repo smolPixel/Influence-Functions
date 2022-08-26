@@ -317,7 +317,7 @@ def calc_influence_single(model, train_loader, test_loader, test_id_num, gpu,
         s_test_vec = calc_s_test_single(model, z_test, t_test, train_loader,
                                         gpu, recursion_depth=recursion_depth,
                                         r=r)
-
+    fds
     # Calculate the influence function
     train_dataset_size = len(train_loader.dataset)
     influences = []
