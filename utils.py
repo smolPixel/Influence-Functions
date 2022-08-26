@@ -8,6 +8,32 @@ def set_seed(seed=42):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
 
+
+
+def grad_z(z, t, model, gpu=-1):
+    """Calculates the gradient z. One grad_z should be computed for each
+    training sample.
+
+    Arguments:
+        z: torch tensor, training data points
+            e.g. an image sample (batch_size, 3, 256, 256)
+        t: torch tensor, training data labels
+        model: torch NN, model used to evaluate the dataset
+        gpu: int, device id to use for GPU, -1 for CPU
+
+    Returns:
+        grad_z: list of torch tensor, containing the gradients
+            from model parameters to loss"""
+    model.eval()
+    # initialize
+    if gpu >= 0:
+        z, t = z.cuda(), t.cuda()
+    y = model(z)
+    loss = calc_loss(y, t)
+    # Compute sum of gradients from model parameters to loss
+    params = [ p for p in model.parameters() if p.requires_grad ]
+    return list(grad(loss, params, create_graph=True))
+
 def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
            recursion_depth=5000):
     """s_test can be precomputed for each test point of interest, and then
