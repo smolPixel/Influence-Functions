@@ -1,7 +1,7 @@
 """Leave one out for finding the influence"""
 from torch.utils.data import DataLoader
 import torch
-from utils import set_seed
+from utils import set_seed, calc_s_test_single
 from copy import deepcopy
 
 class BlackBox_influence():
@@ -23,5 +23,6 @@ class BlackBox_influence():
 
 
 		for datapoint in data_loader:
-			print(datapoint)
-			fds
+			x=datapoint['input']
+			y=datapoint['label'].item()
+			print(calc_s_test_single(model, x, y, train))
