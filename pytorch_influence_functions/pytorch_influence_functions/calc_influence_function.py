@@ -308,11 +308,9 @@ def calc_influence_single(model, train_loader, test_loader, test_id_num, gpu,
         test_id_num: int, the number of the test dataset point
             the influence was calculated for"""
     # Calculate s_test vectors if not provided
-    print(s_test_vec)
     if not s_test_vec:
-        print("bitch")
-        fds
         z_test, t_test = test_loader.dataset[test_id_num]
+        print(z_test, t_test)
         z_test = test_loader.collate_fn([z_test])
         t_test = test_loader.collate_fn([t_test])
         s_test_vec = calc_s_test_single(model, z_test, t_test, train_loader,
