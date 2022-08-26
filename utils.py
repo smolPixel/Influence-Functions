@@ -10,7 +10,7 @@ def set_seed(seed=42):
 
 
 
-def grad_z(z, t, model, gpu=-1):
+def grad_z(z, t, classifier, gpu=-1):
     """Calculates the gradient z. One grad_z should be computed for each
     training sample.
 
@@ -24,14 +24,14 @@ def grad_z(z, t, model, gpu=-1):
     Returns:
         grad_z: list of torch tensor, containing the gradients
             from model parameters to loss"""
-    model.eval()
+    classifier.model.eval()
     # initialize
     if gpu >= 0:
         z, t = z.cuda(), t.cuda()
-    y = model(z)
+    y = classifier(z)
     loss = calc_loss(y, t)
     # Compute sum of gradients from model parameters to loss
-    params = [ p for p in model.parameters() if p.requires_grad ]
+    params = [ p for p in classifier.model.parameters() if p.requires_grad ]
     return list(grad(loss, params, create_graph=True))
 
 def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
