@@ -76,6 +76,7 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
             labels_train=batch['label']
             if gpu >= 0:
                 exo, labels_train = exo.cuda(), labels_train.cuda()
+            print(exo.shape)
             y = classifier.get_logits(exo)
             # For classification
             y = torch.nn.functional.log_softmax(y)
