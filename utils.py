@@ -75,6 +75,7 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
             exo=batch['input']
             labels_train=batch['label']
             print(exo.shape)
+            print(exo)
             y = classifier.get_logits(exo)
             # For classification
             y = torch.nn.functional.log_softmax(y)
