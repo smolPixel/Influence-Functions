@@ -186,13 +186,13 @@ def calc_s_test_single(model, z_test, t_test, train_loader, gpu=-1,
     Returns:
         s_test_vec: torch tensor, contains s_test for a single test image"""
     s_test_vec_list = []
-    print(r)
-    fds
     for i in range(r):
         s_test_vec_list.append(s_test(z_test, t_test, model, train_loader,
                                       gpu=gpu, damp=damp, scale=scale,
                                       recursion_depth=recursion_depth))
         display_progress("Averaging r-times: ", i, r)
+
+    dfs
 
     ################################
     # TODO: Understand why the first[0] tensor is the largest with 1675 tensor
