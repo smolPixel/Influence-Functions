@@ -34,3 +34,4 @@ class BlackBox_influence():
 			x=datapoint['input']
 			y=datapoint['label']
 			print(calc_s_test_single(model, x, y, train_loader))
+			print('---')
