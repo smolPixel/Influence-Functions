@@ -192,7 +192,6 @@ def calc_s_test_single(model, z_test, t_test, train_loader, gpu=-1,
                                       recursion_depth=recursion_depth))
         display_progress("Averaging r-times: ", i, r)
 
-    dfs
 
     ################################
     # TODO: Understand why the first[0] tensor is the largest with 1675 tensor
