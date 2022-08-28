@@ -13,7 +13,7 @@ class BlackBox_influence():
 	def calc_influence(self, model, train, dev):
 		"""Takes in: a fully trained model,  the training set, and the dev set for which to calculate the influence"""
 		results_full = torch.zeros((len(dev)))
-		data_loader = DataLoader(
+		test_loader = DataLoader(
 			dataset=dev,
 			batch_size=1,
 			shuffle=False,
@@ -21,8 +21,16 @@ class BlackBox_influence():
 			pin_memory=torch.cuda.is_available()
 		)
 
+		train_loader= DataLoader(
+			dataset=train,
+			batch_size=1,
+			shuffle=False,
+			# num_workers=cpu_count(),
+			pin_memory=torch.cuda.is_available()
+		)
 
-		for datapoint in data_loader:
+
+		for datapoint in test_loader:
 			x=datapoint['input']
 			y=datapoint['label']
-			print(calc_s_test_single(model, x, y, train))
+			print(calc_s_test_single(model, x, y, train_loader))
