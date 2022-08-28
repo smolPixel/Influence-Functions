@@ -118,7 +118,8 @@ class LinearClassifier(pl.LightningModule):
 
 
     def forward(self, inputs):
-        input_sequence = inputs.view(-1, self.argdict['input_size']).float().to(self.device)
+        input_sequence = inputs.view(-1, self.argdict['input_size']).to(self.device)
+        input_sequence=input_sequence.float()
         output = self.linear_layer(input_sequence)
         print(output)
         return output
