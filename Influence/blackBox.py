@@ -33,5 +33,6 @@ class BlackBox_influence():
 		for datapoint in test_loader:
 			x=datapoint['input']
 			y=datapoint['label']
-			print(calc_s_test_single(model, x, y, train_loader))
+			influence, harmful, helpful, _=calc_s_test_single(model, x, y, train_loader)
+			print(harmful)
 			print('---')
