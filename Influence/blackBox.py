@@ -1,7 +1,7 @@
 """Leave one out for finding the influence"""
 from torch.utils.data import DataLoader
 import torch
-from utils import set_seed, calc_s_test_single
+from utils import set_seed, calc_s_test_single, grad_z, display_progress
 from copy import deepcopy
 
 class BlackBox_influence():
@@ -30,10 +30,10 @@ class BlackBox_influence():
 		)
 
 		print("bru")
-		for datapoint in test_loader:
+		for i, datapoint in enumerate(test_loader):
 			x=datapoint['input']
 			y=datapoint['label']
-			s_test=calc_s_test_single(model, x, y, train_loader)
+			s_test_vec=calc_s_test_single(model, x, y, train_loader)
 			#Now that we have the s_test for the test point, we can calculate the influence of each trainng point on it
 			train_dataset_size = len(train_loader.dataset)
 			influences = []
@@ -47,12 +47,7 @@ class BlackBox_influence():
 			for batch in train_loader_influence:
 				input=batch['input']
 				label=batch['label']
-				grad_z_vec = grad_z(z, t, model, gpu=gpu)
-				if time_logging:
-					time_b = datetime.datetime.now()
-					time_delta = time_b - time_a
-					logging.info(f"Time for grad_z iter:"
-								 f" {time_delta.total_seconds() * 1000}")
+				grad_z_vec = grad_z(input, label, model, gpu=-1)
 				tmp_influence = -sum(
 					[
 						####################
