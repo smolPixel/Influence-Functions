@@ -27,7 +27,7 @@ def grad_z(training_batch, label, classifier, gpu=-1):
     classifier.model.eval()
     # initialize
     if gpu >= 0:
-        z, t = z.cuda(), t.cuda()
+        training_batch, label = training_batch.cuda(), label.cuda()
     #y= logits over the classes
     print(training_batch.shape)
     y = classifier.get_logits(training_batch)

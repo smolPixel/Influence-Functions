@@ -118,6 +118,6 @@ class LinearClassifier(pl.LightningModule):
 
 
     def forward(self, inputs):
-        l1=self.embedding(inputs)
-        outputs=self.linear_layer(l1)
-        return outputs
+        bs = input.shape[0]
+        input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
+        output = self.linear_layer(input_sequence)
