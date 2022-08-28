@@ -164,7 +164,7 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
     return h_estimate
 
 def calc_s_test_single(model, z_test, t_test, train_loader, gpu=-1,
-                       damp=0.01, scale=25, recursion_depth=5000, r=1):
+                       damp=0.01, scale=25, recursion_depth=1, r=1):
     """Calculates s_test for a single test image taking into account the whole
     training dataset. s_test = invHessian * nabla(Loss(test_img, model params))
 
