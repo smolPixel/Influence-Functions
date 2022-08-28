@@ -3,6 +3,7 @@ from torch.utils.data import DataLoader
 import torch
 from utils import set_seed, calc_s_test_single, grad_z, display_progress
 from copy import deepcopy
+import numpy as np
 
 class BlackBox_influence():
 	"""Calculate influence of training examples for a dev (or test) example following https://arxiv.org/pdf/1703.04730.pdf"""
