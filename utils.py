@@ -74,13 +74,11 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
         for batch in training_loader:
             exo=batch['input']
             labels_train=batch['label']
-            print(exo.shape)
-            print(exo)
             y = classifier.get_logits(exo)
             # For classification
             y = torch.nn.functional.log_softmax(y)
             loss = torch.nn.functional.nll_loss(y, label, weight=None, reduction='mean')
-            params = [ p for p in classifier.algo.model.parameters() if p.requires_grad ]
+            params = [ p for p in classifier.model.parameters() if p.requires_grad ]
             hv = hvp(loss, params, h_estimate)
             # Recursively caclulate h_estimate
             h_estimate = [
