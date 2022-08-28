@@ -92,8 +92,6 @@ def grad_z(z, t, model, gpu=-1):
     if gpu >= 0:
         z, t = z.cuda(), t.cuda()
     y = model(z)
-    print(y)
-    fds
     loss = calc_loss(y, t)
     # Compute sum of gradients from model parameters to loss
     params = [ p for p in model.parameters() if p.requires_grad ]

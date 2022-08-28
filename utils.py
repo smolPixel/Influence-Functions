@@ -28,7 +28,9 @@ def grad_z(z, t, classifier, gpu=-1):
     # initialize
     if gpu >= 0:
         z, t = z.cuda(), t.cuda()
-    y = classifier(z)
+    #y= logits over the classes
+    y = classifier.get_logits(z)
+    print(y.shape)
     loss = calc_loss(y, t)
     # Compute sum of gradients from model parameters to loss
     params = [ p for p in classifier.model.parameters() if p.requires_grad ]

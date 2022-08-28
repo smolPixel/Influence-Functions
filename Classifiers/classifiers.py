@@ -18,5 +18,8 @@ class classifier():
 	def get_loss(self, batch):
 		return self.model.get_loss(batch)
 
+	def get_logits(self, batch):
+		return self.model.forward(batch['input'])
+
 	def reset(self):
 		self.model.reset()
