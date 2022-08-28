@@ -38,7 +38,7 @@ def grad_z(training_batch, label, classifier, gpu=-1):
     params = [ p for p in classifier.model.parameters() if p.requires_grad ]
     return list(grad(loss, params, create_graph=True))
 
-def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
+def s_test(test_point, label, model, training_loader, gpu=-1, damp=0.01, scale=25.0,
            recursion_depth=5000):
     """s_test can be precomputed for each test point of interest, and then
     multiplied with grad_z to get the desired value for each training point.
@@ -58,7 +58,7 @@ def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
 
     Returns:
         h_estimate: list of torch tensors, s_test"""
-    v = grad_z(z_test, t_test, model, gpu)
+    v = grad_z(test_point, label, model, gpu)
     h_estimate = v.copy()
 
     ################################
@@ -71,7 +71,8 @@ def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
         #########################
         # TODO: do x, t really have to be chosen RANDOMLY from the train set?
         #########################
-        for x, t in z_loader:
+        for batch in training_loader:
+            print(batch)
             if gpu >= 0:
                 x, t = x.cuda(), t.cuda()
             y = model(x)
