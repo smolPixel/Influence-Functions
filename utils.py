@@ -10,7 +10,7 @@ def set_seed(seed=42):
 
 
 
-def grad_z(z, t, classifier, gpu=-1):
+def grad_z(training_batch, label, classifier, gpu=-1):
     """Calculates the gradient z. One grad_z should be computed for each
     training sample.
 
@@ -29,7 +29,8 @@ def grad_z(z, t, classifier, gpu=-1):
     if gpu >= 0:
         z, t = z.cuda(), t.cuda()
     #y= logits over the classes
-    y = classifier.get_logits(z)
+    print(training_batch.shape)
+    y = classifier.get_logits(training_batch)
     print(y.shape)
     loss = calc_loss(y, t)
     # Compute sum of gradients from model parameters to loss
