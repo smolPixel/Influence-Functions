@@ -114,7 +114,7 @@ def grad_z(training_batch, label, classifier, gpu=-1):
     return list(grad(loss, params, create_graph=True))
 
 def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, scale=25.0,
-           recursion_depth=5000):
+           recursion_depth=1):
     """s_test can be precomputed for each test point of interest, and then
     multiplied with grad_z to get the desired value for each training point.
     Here, strochastic estimation is used to calculate s_test. s_test is the
@@ -140,8 +140,6 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
     # TODO: Dynamically set the recursion depth so that iterations stops
     # once h_estimate stabilises
     ################################
-    print(recursion_depth)
-    fds
     for i in range(recursion_depth):
         # take just one random sample from training dataset
         # easiest way to just use the DataLoader once, break at the end of loop
