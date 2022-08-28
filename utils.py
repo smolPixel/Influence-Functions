@@ -2,6 +2,7 @@ import random
 import numpy as np
 import torch
 from torch.autograd import grad
+import sys
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -52,7 +53,7 @@ def display_progress(text, current_step, last_step, enabled=True,
         sys.stdout.write(bar + "\n")
 
     sys.stdout.flush()
-    
+
 def hvp(y, w, v):
     """Multiply the Hessians of y and w by v.
     Uses a backprop-like approach to compute the product between the Hessian
