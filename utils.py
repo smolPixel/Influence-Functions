@@ -38,7 +38,7 @@ def grad_z(training_batch, label, classifier, gpu=-1):
     params = [ p for p in classifier.model.parameters() if p.requires_grad ]
     return list(grad(loss, params, create_graph=True))
 
-def s_test(test_point, label, model, training_loader, gpu=-1, damp=0.01, scale=25.0,
+def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, scale=25.0,
            recursion_depth=5000):
     """s_test can be precomputed for each test point of interest, and then
     multiplied with grad_z to get the desired value for each training point.
@@ -72,12 +72,15 @@ def s_test(test_point, label, model, training_loader, gpu=-1, damp=0.01, scale=2
         # TODO: do x, t really have to be chosen RANDOMLY from the train set?
         #########################
         for batch in training_loader:
-            print(batch)
+            exo=batch['input']
+            labels_train=batch['label']
             if gpu >= 0:
-                x, t = x.cuda(), t.cuda()
-            y = model(x)
-            loss = calc_loss(y, t)
-            params = [ p for p in model.parameters() if p.requires_grad ]
+                exo, labels_train = exo.cuda(), labels_train.cuda()
+            y = classifier.get_logits(batch)
+            # For classification
+            y = torch.nn.functional.log_softmax(y)
+            loss = torch.nn.functional.nll_loss(y, label, weight=None, reduction='mean')
+            params = [ p for p in classifier.algo.model.parameters() if p.requires_grad ]
             hv = hvp(loss, params, h_estimate)
             # Recursively caclulate h_estimate
             h_estimate = [
