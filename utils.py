@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import torch
+from torch.autograd import grad
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -29,10 +30,10 @@ def grad_z(training_batch, label, classifier, gpu=-1):
     if gpu >= 0:
         training_batch, label = training_batch.cuda(), label.cuda()
     #y= logits over the classes
-    print(training_batch.shape)
     y = classifier.get_logits(training_batch)
-    print(y.shape)
-    loss = calc_loss(y, t)
+    #For classification
+    y = torch.nn.functional.log_softmax(y)
+    loss = torch.nn.functional.nll_loss(y, label, weight=None, reduction='mean')
     # Compute sum of gradients from model parameters to loss
     params = [ p for p in classifier.model.parameters() if p.requires_grad ]
     return list(grad(loss, params, create_graph=True))
