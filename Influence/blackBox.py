@@ -29,7 +29,7 @@ class BlackBox_influence():
 			pin_memory=torch.cuda.is_available()
 		)
 
-
+		print("bru")
 		for datapoint in test_loader:
 			x=datapoint['input']
 			y=datapoint['label']
