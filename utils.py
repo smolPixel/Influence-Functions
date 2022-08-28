@@ -58,7 +58,7 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
 
     Returns:
         h_estimate: list of torch tensors, s_test"""
-    v = grad_z(test_point, label, model, gpu)
+    v = grad_z(test_point, label, classifier, gpu)
     h_estimate = v.copy()
 
     ################################
