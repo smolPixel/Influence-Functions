@@ -121,5 +121,4 @@ class LinearClassifier(pl.LightningModule):
         input_sequence = inputs.view(-1, self.argdict['input_size']).to(self.device)
         input_sequence=input_sequence.float()
         output = self.linear_layer(input_sequence)
-        print(output)
         return output
