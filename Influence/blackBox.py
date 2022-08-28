@@ -24,5 +24,5 @@ class BlackBox_influence():
 
 		for datapoint in data_loader:
 			x=datapoint['input']
-			y=datapoint['label'].item()
+			y=datapoint['label']
 			print(calc_s_test_single(model, x, y, train))
