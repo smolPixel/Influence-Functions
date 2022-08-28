@@ -37,13 +37,16 @@ class BlackBox_influence():
 			#Now that we have the s_test for the test point, we can calculate the influence of each trainng point on it
 			train_dataset_size = len(train_loader.dataset)
 			influences = []
-			for i in range(train):
-				print(train_loader.dataset[i])
-				fds
-				z = train_loader.collate_fn([z])
-				t = train_loader.collate_fn([t])
-				if time_logging:
-					time_a = datetime.datetime.now()
+			train_loader_influence = DataLoader(
+				dataset=train,
+				batch_size=1,
+				shuffle=False,
+				# num_workers=cpu_count(),
+				pin_memory=torch.cuda.is_available()
+			)
+			for batch in train_loader_influence:
+				input=batch['input']
+				label=batch['label']
 				grad_z_vec = grad_z(z, t, model, gpu=gpu)
 				if time_logging:
 					time_b = datetime.datetime.now()
