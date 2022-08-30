@@ -135,6 +135,8 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
         h_estimate: list of torch tensors, s_test"""
     #grad_z returns
     v = grad_z(test_point, label, classifier, gpu)
+    for entry in v:
+        print(entry.shape)
     print(v)
     fds
     h_estimate = v.copy()
