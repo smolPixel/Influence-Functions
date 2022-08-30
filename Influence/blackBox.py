@@ -30,11 +30,12 @@ class BlackBox_influence():
 			pin_memory=torch.cuda.is_available()
 		)
 
-		print("bru")
+		#We test one point at a time as in the paper
 		for i, datapoint in enumerate(test_loader):
 			x=datapoint['input']
 			y=datapoint['label']
-			s_test_vec=calc_s_test_single(model, x, y, train_loader)
+			#Find the s_test for the test point, invHessian * nabla(Loss(test_img, model params)), metionned in p.3. See function for more details
+			s_test_vec=calc_s_test_single(model, x, y, train_loader, r=5)
 			#Now that we have the s_test for the test point, we can calculate the influence of each trainng point on it
 			train_dataset_size = len(train_loader.dataset)
 			influences = []

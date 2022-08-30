@@ -133,7 +133,10 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
 
     Returns:
         h_estimate: list of torch tensors, s_test"""
+    #grad_z returns
     v = grad_z(test_point, label, classifier, gpu)
+    print(v)
+    fds
     h_estimate = v.copy()
 
     ################################
@@ -187,6 +190,7 @@ def calc_s_test_single(model, z_test, t_test, train_loader, gpu=-1,
         s_test_vec: torch tensor, contains s_test for a single test image"""
     s_test_vec_list = []
     for i in range(r):
+        #As mentionned in page 4, we do the average over r iterations
         s_test_vec_list.append(s_test(z_test, t_test, model, train_loader,
                                       gpu=gpu, damp=damp, scale=scale,
                                       recursion_depth=recursion_depth))
