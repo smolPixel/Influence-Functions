@@ -2,3 +2,4 @@ lightning_logs
 venv
 __pycache__
 pytorch_influence_functions/examples/data
+Data/Cifar
