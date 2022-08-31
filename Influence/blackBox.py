@@ -37,6 +37,9 @@ class BlackBox_influence():
 			x=datapoint['input']
 			y=datapoint['label']
 			#Find the s_test for the test point, invHessian * nabla(Loss(test_img, model params)), metionned in p.3. See function for more details
+			#Code says that r*recursion depth = dataset size
+			print(len(train_loader))
+			fds
 			s_test_vec=calc_s_test_single(model, x, y, train_loader, r=5)
 			#Now that we have the s_test for the test point, we can calculate the influence of each trainng point on it
 			train_dataset_size = len(train_loader.dataset)

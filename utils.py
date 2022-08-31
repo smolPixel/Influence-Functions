@@ -141,8 +141,7 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
     # TODO: Dynamically set the recursion depth so that iterations stops
     # once h_estimate stabilises
     ################################
-    print(recursion_depth)
-    fds
+
     for i in range(recursion_depth):
         # take just one random sample from training dataset
         # easiest way to just use the DataLoader once, break at the end of loop
