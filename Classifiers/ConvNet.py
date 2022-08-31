@@ -113,7 +113,7 @@ class ConvNetClassifier(pl.LightningModule):
 		print("---\n")
 
 	def train_model(self, train_set):
-		self.trainer = pl.Trainer(gpus=1, max_epochs=self.argdict['nb_epoch_classifier'], precision=16, enable_checkpointing=False)
+		self.trainer = pl.Trainer(gpus=1, max_epochs=self.argdict['nb_epoch_classifier'], enable_checkpointing=False)
 		# trainer=pl.Trainer(max_epochs=self.argdict['num_epochs'])
 		train_loader = DataLoader(
 			dataset=train_set,
