@@ -134,7 +134,7 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
     Returns:
         h_estimate: list of torch tensors, s_test"""
     #grad_z returns the gradient for the test point for each layer for the trained network
-    v = grad_z(test_point, test_label, classifier, gpu)
+    v = grad_z(test_point.cuda(), test_label.cuda(), classifier, gpu)
     h_estimate = v.copy()
 
     ################################
@@ -148,8 +148,6 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
         #########################
         # TODO: do x, t really have to be chosen RANDOMLY from the train set?
         #########################
-        print(gpu)
-        fds
         for batch in training_loader:
             if gpu>=0:
                 exo=batch['input'].cuda()
