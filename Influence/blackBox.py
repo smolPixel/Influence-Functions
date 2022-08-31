@@ -61,7 +61,8 @@ class BlackBox_influence():
 					]) / train_dataset_size
 				influences.append(tmp_influence.cpu())
 				display_progress("Calc. influence function: ", i, train_dataset_size)
-
+			print(influences)
+			fds
 			harmful = np.argsort(influences)
 			helpful = harmful[::-1]
 			print(helpful)
