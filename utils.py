@@ -149,11 +149,11 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=1, damp=0.01
         # TODO: do x, t really have to be chosen RANDOMLY from the train set?
         #########################
         for batch in training_loader:
-            exo=batch['input'].cuda()
-            labels_train=batch['label'].cuda()
+            exo=batch['input']
+            labels_train=batch['label']
             y = classifier.get_logits(exo)
             # For classification
-            y = torch.nn.functional.log_softmax(y).cuda()
+            y = torch.nn.functional.log_softmax(y)
             loss = torch.nn.functional.nll_loss(y, labels_train, weight=None, reduction='mean')
             params = [ p for p in classifier.model.parameters() if p.requires_grad ]
             hv = hvp(loss, params, h_estimate)
