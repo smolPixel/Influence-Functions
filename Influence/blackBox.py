@@ -24,7 +24,7 @@ class BlackBox_influence():
 
 		train_loader= DataLoader(
 			dataset=train,
-			batch_size=1,
+			batch_size=64,
 			shuffle=False,
 			# num_workers=cpu_count(),
 			pin_memory=torch.cuda.is_available()
