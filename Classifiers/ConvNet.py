@@ -20,6 +20,8 @@ class ConvNetClassifier(pl.LightningModule):
 		self.test_set = test
 		self.init_model()
 		self.loss_function = train.loss_function
+		print(self.device)
+		fds
 		# self.conv1 = nn.Conv2d(3, 6, 5)
 		# self.pool = nn.MaxPool2d(2, 2)
 		# self.conv2 = nn.Conv2d(6, 16, 5)
