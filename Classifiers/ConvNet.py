@@ -94,7 +94,7 @@ class ConvNetClassifier(pl.LightningModule):
 
 
 	def validation_step(self, batch, batch_idx):
-		input=batch['input']
+		input=batch['input'].float()
 		bs=input.shape[0]
 		output=self.forward(input)
 		best=torch.softmax(output, dim=-1)
