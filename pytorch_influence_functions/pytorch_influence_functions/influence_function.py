@@ -3,7 +3,7 @@
 import torch
 from torch.autograd import grad
 from pytorch_influence_functions.pytorch_influence_functions.utils import display_progress
-
+import timeit
 
 def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
            recursion_depth=5000):
@@ -46,9 +46,10 @@ def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
             params = [ p for p in model.parameters() if p.requires_grad ]
             hv = hvp(loss, params, h_estimate)
             # Recursively caclulate h_estimate
-            h_estimate = [
+            print(timeit.timeit(h_estimate = [
                 _v + (1 - damp) * _h_e - _hv / scale
-                for _v, _h_e, _hv in zip(v, h_estimate, hv)]
+                for _v, _h_e, _hv in zip(v, h_estimate, hv)]))
+            fds
             break
         display_progress("Calc. s_test recursions: ", i, recursion_depth)
     return h_estimate
