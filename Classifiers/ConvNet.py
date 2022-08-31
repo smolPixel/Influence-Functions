@@ -20,8 +20,7 @@ class ConvNetClassifier(pl.LightningModule):
 		self.test_set = test
 		self.init_model()
 		self.loss_function = train.loss_function
-		print(self.device)
-		fds
+
 		# self.conv1 = nn.Conv2d(3, 6, 5)
 		# self.pool = nn.MaxPool2d(2, 2)
 		# self.conv2 = nn.Conv2d(6, 16, 5)
@@ -130,6 +129,8 @@ class ConvNetClassifier(pl.LightningModule):
 			pin_memory=torch.cuda.is_available()
 		)
 		self.trainer.fit(self, train_loader, dev_loader)
+		print(self.device)
+		fds
 		# fds
 
 	#
