@@ -6,6 +6,7 @@ import os
 from sklearn.metrics import accuracy_score, recall_score, f1_score
 import pytorch_lightning as pl
 from utils import set_seed
+import torch.nn.functional as F
 
 class ConvNetClassifier(pl.LightningModule):
 
@@ -95,7 +96,7 @@ class ConvNetClassifier(pl.LightningModule):
 	def validation_step(self, batch, batch_idx):
 		input=batch['input']
 		bs=input.shape[0]
-		output=self.foward(input)
+		output=self.forward(input)
 		best=torch.softmax(output, dim=-1)
 		pred=torch.argmax(best, dim=-1)
 		acc=accuracy_score(batch['label'].cpu(), pred.cpu())
