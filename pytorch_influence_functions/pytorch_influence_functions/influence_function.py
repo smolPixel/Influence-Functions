@@ -6,7 +6,7 @@ from pytorch_influence_functions.pytorch_influence_functions.utils import displa
 import time
 
 def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
-           recursion_depth=5000):
+           recursion_depth=1):
     """s_test can be precomputed for each test point of interest, and then
     multiplied with grad_z to get the desired value for each training point.
     Here, strochastic estimation is used to calculate s_test. s_test is the
