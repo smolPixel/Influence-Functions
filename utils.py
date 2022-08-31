@@ -113,7 +113,7 @@ def grad_z(training_batch, label, classifier, gpu=-1):
     params = [ p for p in classifier.model.parameters() if p.requires_grad ]
     return list(grad(loss, params, create_graph=True))
 
-def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.01, scale=25.0,
+def s_test(test_point, test_label, classifier, training_loader, gpu=1, damp=0.01, scale=25.0,
            recursion_depth=1):
     """s_test can be precomputed for each test point of interest, and then
     multiplied with grad_z to get the desired value for each training point.
@@ -155,7 +155,7 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
             # For classification
             y = torch.nn.functional.log_softmax(y).cuda()
             loss = torch.nn.functional.nll_loss(y, labels_train, weight=None, reduction='mean')
-            params = [ p.cuda() for p in classifier.model.parameters() if p.requires_grad ]
+            params = [ p for p in classifier.model.parameters() if p.requires_grad ]
             hv = hvp(loss, params, h_estimate)
             # Recursively caclulate h_estimate
             h_estimate = [
