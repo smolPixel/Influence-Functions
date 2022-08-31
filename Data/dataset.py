@@ -44,12 +44,10 @@ def create_datasets(argdict):
         train = datasets.CIFAR10(root='/Tmp/', train=True, transform=transforms.ToTensor(), download=True)
         test = datasets.MNIST(root='/Tmp/', train=False, transform=transforms.ToTensor(),
                                       download=True)
-        print(len(train))
-        fds
-        train, dev=torch.utils.data.random_split(train, [55000, 5000])
-        train=MNIST_dataset(train)
-        dev=MNIST_dataset(dev)
-        test=MNIST_dataset(test)
+        train, dev=torch.utils.data.random_split(train, [45000, 5000])
+        train=CIFAR10_dataset(train)
+        dev=CIFAR10_dataset(dev)
+        test=CIFAR10_dataset(test)
         argdict['input_size']=784
         return train, dev, test
     else:
