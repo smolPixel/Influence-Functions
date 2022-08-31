@@ -113,7 +113,7 @@ def grad_z(training_batch, label, classifier, gpu=-1):
     params = [ p for p in classifier.model.parameters() if p.requires_grad ]
     return list(grad(loss, params, create_graph=True))
 
-def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, scale=25.0,
+def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.01, scale=25.0,
            recursion_depth=1):
     """s_test can be precomputed for each test point of interest, and then
     multiplied with grad_z to get the desired value for each training point.
@@ -134,7 +134,7 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
     Returns:
         h_estimate: list of torch tensors, s_test"""
     #grad_z returns the gradient for the test point for each layer for the trained network
-    v = grad_z(test_point, label, classifier, gpu)
+    v = grad_z(test_point, test_label, classifier, gpu)
     h_estimate = v.copy()
 
     ################################
@@ -154,7 +154,7 @@ def s_test(test_point, label, classifier, training_loader, gpu=-1, damp=0.01, sc
             y = classifier.get_logits(exo)
             # For classification
             y = torch.nn.functional.log_softmax(y)
-            loss = torch.nn.functional.nll_loss(y, label, weight=None, reduction='mean')
+            loss = torch.nn.functional.nll_loss(y, labels_train, weight=None, reduction='mean')
             params = [ p for p in classifier.model.parameters() if p.requires_grad ]
             hv = hvp(loss, params, h_estimate)
             # Recursively caclulate h_estimate
