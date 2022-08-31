@@ -46,8 +46,6 @@ def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
             y = model(x)
             loss = calc_loss(y, t)
             params = [ p for p in model.parameters() if p.requires_grad ]
-            print(len(params))
-            fs
             hv = hvp(loss, params, h_estimate)
             # Recursively caclulate h_estimate
             h_estimate = [
