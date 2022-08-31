@@ -79,8 +79,6 @@ class LinearClassifier(pl.LightningModule):
 
     def validation_step(self, batch, batch_idx):
         input=batch['input']
-        print(input.shape)
-        fd
         bs=input.shape[0]
         input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
         output=self.linear_layer(input_sequence)

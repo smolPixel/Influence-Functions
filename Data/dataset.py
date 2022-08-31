@@ -48,7 +48,7 @@ def create_datasets(argdict):
         train=CIFAR10_dataset(train)
         dev=CIFAR10_dataset(dev)
         test=CIFAR10_dataset(test)
-        argdict['input_size']=784
+        argdict['input_size']=3072
         return train, dev, test
     else:
         raise ValueError("dataset not found")
