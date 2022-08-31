@@ -30,6 +30,8 @@ class BlackBox_influence():
 			pin_memory=torch.cuda.is_available()
 		)
 
+
+
 		#We test one point at a time as in the paper
 		for i, datapoint in enumerate(test_loader):
 			x=datapoint['input']
