@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score, recall_score, f1_score
 import pytorch_lightning as pl
 from utils import set_seed
 
-class LinearClassifier(pl.LightningModule):
+class ConvNetClassifier(pl.LightningModule):
 
     def __init__(self, argdict, train, dev, test):
         super().__init__()

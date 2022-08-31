@@ -8,6 +8,9 @@ class classifier():
 		if self.argdict['classifier'].lower()=="linear":
 			from Classifiers.Linear import LinearClassifier
 			self.model=LinearClassifier(self.argdict, train, dev, test)
+		elif self.argdict['classifier'].lower()=="convnet":
+			from Classifiers.ConvNet import ConvNetClassifier
+			self.model=ConvNetClassifier(self.argdict, train, dev, test)
 		else:
 			raise ValueError("Classifier Not Found")
 
