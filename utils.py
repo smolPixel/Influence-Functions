@@ -153,7 +153,7 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
             labels_train=batch['label'].cuda()
             y = classifier.get_logits(exo)
             # For classification
-            y = torch.nn.functional.log_softmax(y)
+            y = torch.nn.functional.log_softmax(y).cuda()
             loss = torch.nn.functional.nll_loss(y, labels_train, weight=None, reduction='mean')
             params = [ p for p in classifier.model.parameters() if p.requires_grad ]
             hv = hvp(loss, params, h_estimate)
