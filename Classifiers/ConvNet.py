@@ -30,7 +30,7 @@ class ConvNetClassifier(pl.LightningModule):
 		# print(self.model)
 
 	def forward(self, input):
-		x = self.pool(F.relu(self.conv1(input)))
+		x = self.pool(F.relu(self.conv1(input.float())))
 		x = self.pool(F.relu(self.conv2(x)))
 		x = x.view(-1, 16 * 5 * 5)
 		x = F.relu(self.fc1(x))
@@ -78,10 +78,9 @@ class ConvNetClassifier(pl.LightningModule):
 		return loss
 
 	def training_step(self, batch, batch_idx):
-		input=batch['input']
+		input = batch['input']
 		bs = input.shape[0]
-		input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
-		output=self.linear_layer(input_sequence)
+		output = self.forward(input)
 		best=torch.softmax(output, dim=-1)
 		pred=torch.argmax(best, dim=-1)
 		acc=accuracy_score(batch['label'].cpu(), pred.cpu())
@@ -94,7 +93,7 @@ class ConvNetClassifier(pl.LightningModule):
 
 
 	def validation_step(self, batch, batch_idx):
-		input=batch['input'].float()
+		input=batch['input']
 		bs=input.shape[0]
 		output=self.forward(input)
 		best=torch.softmax(output, dim=-1)
@@ -104,7 +103,6 @@ class ConvNetClassifier(pl.LightningModule):
 		loss=self.loss_function(output, batch['label'])
 		# self.log("Loss", loss, on_epoch=True, on_step=False, prog_bar=True, logger=False,
 		#          batch_size=bs)
-		fds
 		self.log("Acc Dev", acc, on_epoch=True, on_step=False, prog_bar=True, logger=False,
 				 batch_size=bs)
 		return loss
