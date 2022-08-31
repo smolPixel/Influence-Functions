@@ -148,6 +148,7 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
         #########################
         # TODO: do x, t really have to be chosen RANDOMLY from the train set?
         #########################
+        print(gpu)
         for batch in training_loader:
             if gpu>=0:
                 exo=batch['input'].cuda()
