@@ -132,9 +132,9 @@ class ConvNetClassifier(pl.LightningModule):
 		self.trainer.fit(self, train_loader, dev_loader)
 		# fds
 
-
-	def forward(self, inputs):
-		input_sequence = inputs.view(-1, self.argdict['input_size']).to(self.device)
-		input_sequence=input_sequence.float()
-		output = self.linear_layer(input_sequence)
-		return output
+	#
+	# def forward(self, inputs):
+	# 	input_sequence = inputs.view(-1, self.argdict['input_size']).to(self.device)
+	# 	input_sequence=input_sequence.float()
+	# 	output = self.linear_layer(input_sequence)
+	# 	return output
