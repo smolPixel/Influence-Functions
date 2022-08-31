@@ -4,6 +4,7 @@ import torch
 from torch.autograd import grad
 import sys
 
+
 def set_seed(seed=42):
     random.seed(seed)
     np.random.seed(seed)

@@ -129,8 +129,6 @@ class ConvNetClassifier(pl.LightningModule):
 			pin_memory=torch.cuda.is_available()
 		)
 		self.trainer.fit(self, train_loader, dev_loader)
-		print(self.device)
-		fds
 		# fds
 
 	#
