@@ -135,6 +135,7 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
     Returns:
         h_estimate: list of torch tensors, s_test"""
     #grad_z returns the gradient for the test point for each layer for the trained network
+    classifier.model=classifier.model.cuda()
     v = grad_z(test_point.cuda(), test_label.cuda(), classifier, gpu)
     h_estimate = v.copy()
 
