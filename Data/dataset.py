@@ -38,5 +38,19 @@ def create_datasets(argdict):
         test=MNIST_dataset(test)
         argdict['input_size']=784
         return train, dev, test
+    elif argdict['dataset'] in ['CIFAR']:
+        #Image dataset
+        from Data.CIFAR.CIFAR_dataset import CIFAR10_dataset
+        train = datasets.CIFAR10(root='/Tmp/', train=True, transform=transforms.ToTensor(), download=True)
+        test = datasets.MNIST(root='/Tmp/', train=False, transform=transforms.ToTensor(),
+                                      download=True)
+        print(len(train))
+        fds
+        train, dev=torch.utils.data.random_split(train, [55000, 5000])
+        train=MNIST_dataset(train)
+        dev=MNIST_dataset(dev)
+        test=MNIST_dataset(test)
+        argdict['input_size']=784
+        return train, dev, test
     else:
         raise ValueError("dataset not found")

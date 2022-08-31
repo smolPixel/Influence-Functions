@@ -1,0 +1,5 @@
+dataset: CIFAR
+classifier: linear
+nb_epoch_classifier: 1 #5
+influence_function: blackbox
+random_seed: 42
