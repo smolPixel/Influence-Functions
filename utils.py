@@ -168,10 +168,9 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
                 _v + (1 - damp) * _h_e - _hv / scale
                 for _v, _h_e, _hv in zip(v, h_estimate, hv)]
             mean=np.mean(np.array([torch.norm(h).item() for h in h_estimate]))
-            print(mean)
-            fds
+
             break
-        display_progress(f"Calc. s_test recursions: {i}", i, recursion_depth)
+        display_progress(f"Calc. s_test recursions: mean {mean}: ", i, recursion_depth)
     return h_estimate
 
 def calc_s_test_single(model, z_test, t_test, train_loader, gpu=-1,
