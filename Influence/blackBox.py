@@ -34,10 +34,14 @@ class BlackBox_influence():
 
 		#We test one point at a time as in the paper
 		for i, datapoint in enumerate(test_loader):
+			print(torch.cuda.memory_allocated())
 			x=datapoint['input']
 			y=datapoint['label']
 			#Find the s_test for the test point, invHessian * nabla(Loss(test_img, model params)), metionned in p.3. See function for more details
-			#Code says that r*recursion depth = dataset size
+			#Code says that r*recursion depth = dataset size, however that is excrutiatingly slow.
+			#########################
+			# TODO: Experiment with various values of r depth and r to see when it stabilizes
+			#########################
 			s_test_vec=calc_s_test_single(model, x, y, train_loader, recursion_depth=50, r=10, gpu=0)
 			#Now that we have the s_test for the test point, we can calculate the influence of each trainng point on it
 			train_dataset_size = len(train_loader.dataset)
