@@ -166,7 +166,7 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
             h_estimate = [
                 _v + (1 - damp) * _h_e - _hv / scale
                 for _v, _h_e, _hv in zip(v, h_estimate, hv)]
-            print([torch.norm(h)] for h in h_estimate)
+            print([torch.norm(h) for h in h_estimate])
             fds
             break
         display_progress(f"Calc. s_test recursions: {i}", i, recursion_depth)
