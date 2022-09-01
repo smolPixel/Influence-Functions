@@ -4,6 +4,7 @@ import torch
 from torch.autograd import grad
 from pytorch_influence_functions.pytorch_influence_functions.utils import display_progress
 import time
+import numpy as np
 
 def s_test(z_test, t_test, model, z_loader, gpu=-1, damp=0.01, scale=25.0,
            recursion_depth=1):
