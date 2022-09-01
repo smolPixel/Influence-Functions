@@ -138,6 +138,7 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
     classifier.model=classifier.model.cuda()
     v = grad_z(test_point.cuda(), test_label.cuda(), classifier, gpu)
     h_estimate = v.copy()
+    mean=0
 
     ################################
     # TODO: Dynamically set the recursion depth so that iterations stops
@@ -166,7 +167,8 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
             h_estimate = [
                 _v + (1 - damp) * _h_e - _hv / scale
                 for _v, _h_e, _hv in zip(v, h_estimate, hv)]
-            print([torch.norm(h) for h in h_estimate])
+            mean=np.mean(np.array([torch.norm(h).item() for h in h_estimate]))
+            print(mean)
             fds
             break
         display_progress(f"Calc. s_test recursions: {i}", i, recursion_depth)
