@@ -167,7 +167,7 @@ def s_test(test_point, test_label, classifier, training_loader, gpu=-1, damp=0.0
                 _v + (1 - damp) * _h_e - _hv / scale
                 for _v, _h_e, _hv in zip(v, h_estimate, hv)]
             break
-        display_progress("Calc. s_test recursions: ", i, recursion_depth)
+        display_progress(f"Calc. s_test recursions: {i}", i, recursion_depth)
     return h_estimate
 
 def calc_s_test_single(model, z_test, t_test, train_loader, gpu=-1,
