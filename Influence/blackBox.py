@@ -68,6 +68,7 @@ class BlackBox_influence():
 						torch.sum(k * j).data
 						for k, j in zip(grad_z_vec, s_test_vec)
 					]) / train_dataset_size
+				print(tmp_influence)
 				influences.append(tmp_influence.item().cpu())
 				display_progress("Calc. influence function: ", i, train_dataset_size)
 			print(influences)
