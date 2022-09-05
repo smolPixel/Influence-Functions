@@ -55,7 +55,7 @@ class BlackBox_influence():
 				# num_workers=cpu_count(),
 				pin_memory=torch.cuda.is_available()
 			)
-			for batch in train_loader_influence:
+			for i, batch in enumerate(train_loader_influence):
 				input=batch['input'].cuda()
 				label=batch['label'].cuda()
 				grad_z_vec = grad_z(input, label, model, gpu=-1)
@@ -68,7 +68,6 @@ class BlackBox_influence():
 						torch.sum(k * j).data
 						for k, j in zip(grad_z_vec, s_test_vec)
 					]) / train_dataset_size
-				print(tmp_influence)
 				influences.append(tmp_influence.item())
 				display_progress("Calc. influence function: ", i, train_dataset_size)
 			print(influences)
