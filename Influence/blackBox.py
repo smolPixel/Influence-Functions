@@ -83,3 +83,4 @@ class BlackBox_influence():
 				ind=harmful[i]
 				img=train.data[ind]['input']
 				plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
+			fds
