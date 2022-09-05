@@ -74,5 +74,12 @@ class BlackBox_influence():
 			# fds
 			harmful = np.argsort(influences)
 			helpful = harmful[::-1]
-			print(helpful)
-			fds
+			for i in range(5):
+				#helpful
+				ind=helpful[i]
+				img=train.data[ind]['input']
+				plt.imsave(f'helpful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
+				#harmful
+				ind=harmful[i]
+				img=train.data[ind]['input']
+				plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
