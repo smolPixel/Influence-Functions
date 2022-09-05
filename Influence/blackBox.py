@@ -56,8 +56,8 @@ class BlackBox_influence():
 				pin_memory=torch.cuda.is_available()
 			)
 			for batch in train_loader_influence:
-				input=batch['input']
-				label=batch['label']
+				input=batch['input'].cuda()
+				label=batch['label'].cuda()
 				grad_z_vec = grad_z(input, label, model, gpu=-1)
 				tmp_influence = -sum(
 					[
