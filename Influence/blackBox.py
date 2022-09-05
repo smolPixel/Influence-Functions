@@ -37,7 +37,6 @@ class BlackBox_influence():
 		for i, datapoint in enumerate(test_loader):
 			print(torch.cuda.memory_allocated())
 			x=datapoint['input']
-			print(x)
 			plt.imsave('test.png', x.cpu().detach().view(28, 28), cmap='gray_r')
 			fds
 			y=datapoint['label']
