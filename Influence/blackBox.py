@@ -38,7 +38,7 @@ class BlackBox_influence():
 			print(torch.cuda.memory_allocated())
 			x=datapoint['input']
 			print(x)
-			plt.imsave('test.png', x)
+			plt.imsave('test.png', x.cpu().detach().view(28, 28), cmap='gray_r')
 			fds
 			y=datapoint['label']
 			#Find the s_test for the test point, invHessian * nabla(Loss(test_img, model params)), metionned in p.3. See function for more details
