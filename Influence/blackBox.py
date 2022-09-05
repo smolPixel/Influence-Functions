@@ -37,8 +37,7 @@ class BlackBox_influence():
 		for i, datapoint in enumerate(test_loader):
 			print(torch.cuda.memory_allocated())
 			x=datapoint['input']
-			plt.imsave('test.png', x.cpu().detach().view(28, 28), cmap='gray_r')
-			fds
+			plt.imsave('test_exo.png', x.cpu().detach().view(28, 28), cmap='gray_r')
 			y=datapoint['label']
 			#Find the s_test for the test point, invHessian * nabla(Loss(test_img, model params)), metionned in p.3. See function for more details
 			#Code says that r*recursion depth = dataset size, however that is excrutiatingly slow.
