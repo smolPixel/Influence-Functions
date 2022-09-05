@@ -4,6 +4,7 @@ import torch
 from utils import set_seed, calc_s_test_single, grad_z, display_progress
 from copy import deepcopy
 import numpy as np
+import matplotlib.pyplot as plt
 
 class BlackBox_influence():
 	"""Calculate influence of training examples for a dev (or test) example following https://arxiv.org/pdf/1703.04730.pdf"""
@@ -37,6 +38,7 @@ class BlackBox_influence():
 			print(torch.cuda.memory_allocated())
 			x=datapoint['input']
 			print(x)
+			plt.imsave('test.png', x)
 			fds
 			y=datapoint['label']
 			#Find the s_test for the test point, invHessian * nabla(Loss(test_img, model params)), metionned in p.3. See function for more details
