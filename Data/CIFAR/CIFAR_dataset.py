@@ -25,10 +25,10 @@ class CIFAR10_dataset(Dataset):
 	def save_img(self, exo, name):
 		# print(exo)
 		print(exo.shape)
-		exo=exo.squeeze(0)
+		exo=np.array(exo.squeeze(0))
 		print(exo.shape)
-		exo=exo.permute(1,2,0)
-		plt.imsave(name, exo.cpu().detach())
+		exo=np.transpose(exo, (1,2,0))
+		plt.imsave(name, exo)
 		# fds
 
 
