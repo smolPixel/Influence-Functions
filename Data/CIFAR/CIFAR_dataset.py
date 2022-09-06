@@ -24,8 +24,8 @@ class CIFAR10_dataset(Dataset):
 
 	def save_img(self, exo, name):
 		# print(exo)
-		print(exo.shape)
-		plt.imsave(name, exo.cpu().detach().view(28, 28), cmap='gray_r')
+		# print(exo.shape)
+		plt.imsave(name, exo.cpu().detach())
 		# fds
 
 
