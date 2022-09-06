@@ -26,7 +26,8 @@ class CIFAR10_dataset(Dataset):
 		# print(exo)
 		print(exo.shape)
 		exo=exo.squeeze(0)
-		exo=exo.transpose(1,2,0)
+		print(exo.shape)
+		exo=exo.permute(1,2,0)
 		plt.imsave(name, exo.cpu().detach())
 		# fds
 
