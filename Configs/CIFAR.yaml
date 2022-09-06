@@ -1,6 +1,6 @@
 dataset: CIFAR
-classifier: linear #ConvNet
-nb_epoch_classifier: 20 #5
+classifier: ConvNet
+nb_epoch_classifier: 5
 influence_function: blackbox
 random_seed: 42
 
