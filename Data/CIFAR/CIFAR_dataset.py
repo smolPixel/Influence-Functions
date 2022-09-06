@@ -22,10 +22,10 @@ class CIFAR10_dataset(Dataset):
 			self.data[index] = {'input': input, 'label':label, 'target':input}
 			index+=1
 
-	def process_generated(self, exo):
+	def save_img(self, exo, name):
 		# print(exo)
-		for i, img in enumerate(exo):
-			plt.imsave(f'Temp/{i}.png', img.cpu().detach().view(28, 28))
+		print(exo.shape)
+		plt.imsave(name, exo.cpu().detach().view(28, 28), cmap='gray_r')
 		# fds
 
 
