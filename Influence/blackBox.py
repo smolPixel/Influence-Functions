@@ -80,9 +80,11 @@ class BlackBox_influence():
 				#helpful
 				ind=helpful[i]
 				img=train.data[ind]['input']
-				plt.imsave(f'helpful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
+				train.save_img(img, f'helpful_{i}.png')
+				# plt.imsave(f'helpful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
 				#harmful
 				ind=harmful[i]
 				img=train.data[ind]['input']
-				plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
+				train.save_img(img, f'harmful_{i}.png')
+				# plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
 			fds
