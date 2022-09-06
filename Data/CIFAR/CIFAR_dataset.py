@@ -25,7 +25,9 @@ class CIFAR10_dataset(Dataset):
 	def save_img(self, exo, name):
 		# print(exo)
 		print(exo.shape)
-		plt.imsave(name, exo.squeeze(0).transpose(1,2,0).cpu().detach())
+		exo=exo.squeeze(0)
+		exo=exo.transpose(1,2,0)
+		plt.imsave(name, exo.cpu().detach())
 		# fds
 
 
