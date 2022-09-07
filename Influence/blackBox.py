@@ -77,7 +77,7 @@ class BlackBox_influence():
 			# print(influences)
 			# fds
 			helpful = np.argsort(influences)
-			harmful = harmful[::-1]
+			harmful = helpful[::-1]
 			for i in range(5):
 				#helpful
 				ind=helpful[i]
