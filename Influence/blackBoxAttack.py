@@ -80,6 +80,8 @@ class BlackBox_Attack():
 			harmful = helpful[::-1]
 			exo=helpful[0]
 			print(exo)
+			exo=train.data[exo]
+			print(exo)
 			fds
 			# for i in range(100):
 			# 	exo
