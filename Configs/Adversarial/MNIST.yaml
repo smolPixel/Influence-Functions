@@ -1,0 +1,7 @@
+dataset: MNIST
+classifier: linear
+nb_epoch_classifier: 1 #15
+influence_function: blackbox_attack
+random_seed: 42
+
+recursion_depth: 10

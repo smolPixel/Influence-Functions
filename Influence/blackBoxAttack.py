@@ -6,7 +6,7 @@ from copy import deepcopy
 import numpy as np
 import matplotlib.pyplot as plt
 
-class BlackBox_influence():
+class BlackBox_Attack():
 	"""Calculate influence of training examples for a dev (or test) example following https://arxiv.org/pdf/1703.04730.pdf"""
 
 	def __init__(self, argdict):
@@ -78,15 +78,8 @@ class BlackBox_influence():
 			# fds
 			helpful = np.argsort(influences)
 			harmful = helpful[::-1]
-			for i in range(5):
-				#helpful
-				ind=helpful[i]
-				img=train.data[ind]['input']
-				train.save_img(img, f'helpful_{i}.png')
-				# plt.imsave(f'helpful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
-				#harmful
-				ind=harmful[i]
-				img=train.data[ind]['input']
-				train.save_img(img, f'harmful_{i}.png')
-				# plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
+			exo=helpful[0]
+			print(exo)
 			fds
+			# for i in range(100):
+			# 	exo
