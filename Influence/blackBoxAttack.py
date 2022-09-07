@@ -74,6 +74,7 @@ class BlackBox_Attack():
 					]) / train_dataset_size
 				influences.append(tmp_influence.item())
 				display_progress("Calc. influence function: ", i, train_dataset_size)
+				break
 			# print(influences)
 			# fds
 			helpful = np.argsort(influences)
