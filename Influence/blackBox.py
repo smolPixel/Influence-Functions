@@ -16,7 +16,7 @@ class BlackBox_influence():
 		"""Takes in: a fully trained model,  the training set, and the dev set for which to calculate the influence"""
 		results_full = torch.zeros((len(dev)))
 		test_loader = DataLoader(
-			dataset=dev,
+			dataset=train,
 			batch_size=1,
 			shuffle=False,
 			# num_workers=cpu_count(),
@@ -31,6 +31,8 @@ class BlackBox_influence():
 			pin_memory=torch.cuda.is_available()
 		)
 
+
+		#Test
 
 
 		#We test one point at a time as in the paper
@@ -74,8 +76,8 @@ class BlackBox_influence():
 				display_progress("Calc. influence function: ", i, train_dataset_size)
 			# print(influences)
 			# fds
-			harmful = np.argsort(influences)
-			helpful = harmful[::-1]
+			helpful = np.argsort(influences)
+			harmful = harmful[::-1]
 			for i in range(5):
 				#helpful
 				ind=helpful[i]
