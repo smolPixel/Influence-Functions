@@ -12,7 +12,6 @@ class BlackBox_influence_group():
 	the loss of each point). TODO: understand why it is not additive :/"""
 
 	def __init__(self, argdict):
-		fds
 		self.argdict=argdict
 
 	def calc_influence(self, model, train, dev):
@@ -79,17 +78,17 @@ class BlackBox_influence_group():
 				display_progress("Calc. influence function: ", i, train_dataset_size)
 			# print(influences)
 			# fds
-			helpful = np.argsort(influences)
-			harmful = helpful[::-1]
-			for i in range(5):
-				#helpful
-				ind=helpful[i]
-				img=train.data[ind]['input']
-				train.save_img(img, f'helpful_{i}.png')
-				# plt.imsave(f'helpful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
-				#harmful
-				ind=harmful[i]
-				img=train.data[ind]['input']
-				train.save_img(img, f'harmful_{i}.png')
-				# plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
+			# helpful = np.argsort(influences)
+			# harmful = helpful[::-1]
+			# for i in range(5):
+			# 	#helpful
+			# 	ind=helpful[i]
+			# 	img=train.data[ind]['input']
+			# 	train.save_img(img, f'helpful_{i}.png')
+			# 	# plt.imsave(f'helpful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
+			# 	#harmful
+			# 	ind=harmful[i]
+			# 	img=train.data[ind]['input']
+			# 	train.save_img(img, f'harmful_{i}.png')
+			# 	# plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
 			fds
