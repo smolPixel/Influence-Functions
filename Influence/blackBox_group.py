@@ -53,8 +53,8 @@ class BlackBox_influence_group():
 			#########################
 			# TODO: Experiment with various values of r depth and r to see when it stabilizes
 			#########################
-			# s_test_vec=calc_s_test_single(model, x, y, train_loader, recursion_depth=self.argdict['recursion_depth'], r=20, gpu=0, scale=50000)
-			s_test_vec=calc_s_test_single(model, x, y, train_loader, recursion_depth=self.argdict['recursion_depth'], r=2, gpu=0, scale=50000)
+			s_test_vec=calc_s_test_single(model, x, y, train_loader, recursion_depth=self.argdict['recursion_depth'], r=20, gpu=0, scale=50000)
+			# s_test_vec=calc_s_test_single(model, x, y, train_loader, recursion_depth=self.argdict['recursion_depth'], r=2, gpu=0, scale=50000)
 			#Now that we have the s_test for the test point, we can calculate the influence of each trainng point on it
 			train_dataset_size = len(train_loader.dataset)
 			influences = []
