@@ -68,7 +68,7 @@ class LinearClassifier(pl.LightningModule):
         return loss
 
     def training_step(self, batch, batch_idx):
-        print('bitch')
+        # print('bitch')
         input=batch['input']
         bs = input.shape[0]
         input_sequence = input.view(-1, self.argdict['input_size']).to('cuda').float()
