@@ -40,6 +40,9 @@ class BlackBox_influence_group():
 
 		#We test one point at a time as in the paper
 		for i, datapoint in enumerate(test_loader):
+			influence_per_class = [0, 0, 0, 0, 0,
+								   0, 0, 0, 0, 0]
+
 			print(torch.cuda.memory_allocated())
 			x=datapoint['input']
 			train.save_img(x, 'test_exo.png')
@@ -78,9 +81,6 @@ class BlackBox_influence_group():
 					]) / train_dataset_size
 				influences.append(tmp_influence.item())
 				influence_per_class[label.item()]+=tmp_influence.item()
-				print(influence_per_class)
-				print(tmp_influence.item())
-				fds
 				display_progress("Calc. influence function: ", i, train_dataset_size)
 			# print(influences)
 			# fds
@@ -97,4 +97,5 @@ class BlackBox_influence_group():
 			# 	img=train.data[ind]['input']
 			# 	train.save_img(img, f'harmful_{i}.png')
 			# 	# plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
-			fds
+			print(y)
+			print(influence_per_class)
