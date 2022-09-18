@@ -35,7 +35,8 @@ class BlackBox_influence_group():
 
 
 		#Test
-
+		influence_per_class=[0,0,0,0,0,
+							 0,0,0,0,0]
 
 		#We test one point at a time as in the paper
 		for i, datapoint in enumerate(test_loader):
@@ -75,6 +76,9 @@ class BlackBox_influence_group():
 						for k, j in zip(grad_z_vec, s_test_vec)
 					]) / train_dataset_size
 				influences.append(tmp_influence.item())
+				print(label)
+				print(tmp_influence.item())
+				fds
 				display_progress("Calc. influence function: ", i, train_dataset_size)
 			# print(influences)
 			# fds

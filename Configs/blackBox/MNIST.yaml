@@ -1,6 +1,6 @@
 dataset: MNIST
 classifier: linear
-nb_epoch_classifier: 15
+nb_epoch_classifier: 1 #15
 influence_function: blackbox_group
 random_seed: 42
 
