@@ -76,7 +76,8 @@ class BlackBox_influence_group():
 						for k, j in zip(grad_z_vec, s_test_vec)
 					]) / train_dataset_size
 				influences.append(tmp_influence.item())
-				print(label)
+				influence_per_class[label.item()]+=temp_influence.item()
+				print(influence_per_class)
 				print(tmp_influence.item())
 				fds
 				display_progress("Calc. influence function: ", i, train_dataset_size)
