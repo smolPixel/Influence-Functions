@@ -10,6 +10,9 @@ class influence():
 		elif argdict['influence_function'].lower()=="blackbox":
 			from Influence.blackBox import BlackBox_influence
 			self.model=BlackBox_influence(argdict)
+		elif argdict['influence_function'].lower()=="blackbox_group":
+			from Influence.blackBox_group import BlackBox_influence_group
+			self.model=BlackBox_influence_group(argdict)
 		elif argdict['influence_function'].lower()=="blackbox_attack":
 			from Influence.blackBoxAttack import BlackBox_Attack
 			self.model=BlackBox_Attack(argdict)
