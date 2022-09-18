@@ -6,10 +6,13 @@ from copy import deepcopy
 import numpy as np
 import matplotlib.pyplot as plt
 
-class BlackBox_Attack():
-	"""Calculate influence of training examples for a dev (or test) example following https://arxiv.org/pdf/1703.04730.pdf"""
+class BlackBox_influence_group():
+	"""Calculate influence of groups of training examples (in this case the classes) for a dev (or test) example following https://arxiv.org/pdf/1905.13289.pdf.
+	The main difference with the solo version is that the change in self-loss is not additive and so has to be calculated separatly (self loss is define as the sum over the points of interest of
+	the loss of each point). TODO: understand why it is not additive :/"""
 
 	def __init__(self, argdict):
+		fds
 		self.argdict=argdict
 
 	def calc_influence(self, model, train, dev):
@@ -74,17 +77,19 @@ class BlackBox_Attack():
 					]) / train_dataset_size
 				influences.append(tmp_influence.item())
 				display_progress("Calc. influence function: ", i, train_dataset_size)
-				break
 			# print(influences)
 			# fds
 			helpful = np.argsort(influences)
 			harmful = helpful[::-1]
-			exo=helpful[0]
-			print(exo)
-			exo=train.data[exo]
-			print(exo)
+			for i in range(5):
+				#helpful
+				ind=helpful[i]
+				img=train.data[ind]['input']
+				train.save_img(img, f'helpful_{i}.png')
+				# plt.imsave(f'helpful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
+				#harmful
+				ind=harmful[i]
+				img=train.data[ind]['input']
+				train.save_img(img, f'harmful_{i}.png')
+				# plt.imsave(f'harmful_{i}.png', img.cpu().detach().view(28, 28), cmap='gray_r')
 			fds
-			for i in range(100):
-				#First we need to find influence wrt pixels
-
-				exo=exo-0.02*np.sign(influences[exo])

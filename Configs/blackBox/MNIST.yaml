@@ -1,7 +1,7 @@
 dataset: MNIST
 classifier: linear
 nb_epoch_classifier: 15
-influence_function: blackbox
+influence_function: blackbox_group
 random_seed: 42
 
 recursion_depth: 10
