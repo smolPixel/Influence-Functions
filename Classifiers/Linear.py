@@ -5,6 +5,7 @@ import torch.nn as nn
 import os
 from sklearn.metrics import accuracy_score, recall_score, f1_score
 import pytorch_lightning as pl
+from pytorch_lightning.callbacks import Callback
 from utils import set_seed
 
 class LinearClassifier(pl.LightningModule):
@@ -32,6 +33,9 @@ class LinearClassifier(pl.LightningModule):
         #     param.requires_grad = False
         # self.optimizer = AdamW(self.model.parameters(), lr=1e-5)
 
+    def on_exception(self):
+        fds
+
     def reset(self):
         self.init_model()
 
@@ -46,6 +50,8 @@ class LinearClassifier(pl.LightningModule):
         embed = torch.mean(embed, dim=1)
         output = self.linear_layer(embed)
         return output
+
+    # def on_exception(self):
 
     def get_loss(self, batch):
         input=batch['input'].to(self.device)
